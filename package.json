@@ -8,8 +8,17 @@
     "start": "ts-node ./src/index.ts"
   },
   "devDependencies": {
+    "@types/graphql": "^14.0.3",
+    "@types/koa": "^2.0.46",
+    "@types/mongoose": "^5.3.1",
     "@types/node": "^10.12.9",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "koa": "^2.6.2",
+    "mongoose": "^5.3.12",
+    "subscriptions-transport-ws": "^0.9.15"
   }
 }
