@@ -1,10 +1,12 @@
 interface IUser {
 	updatedAt?: string;
-title?: string;
-description?: string;
-type?: string;
-category?: string;
-tags?: Array<string>;
+	username?: string;
+	email?: string;
+	password?: string;
+	authToken?: string;
+	refreshToken?: string;
+	userProfileData?: string;
+	userWorkData?: string;
 }
 
 export default IUser;

@@ -15,11 +15,13 @@ const createProjectNoteResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IProjectNote, context: IResolverContext): Promise<IProjectNote> => {
 		const newProjectNote = await new context.models.ProjectNote({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			creator: args.creator,
+			projectId: args.projectId,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newProjectNote) {
@@ -32,8 +34,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		ProjectNotes: ProjectNotesResolver,
-		ProjectNote: ProjectNoteResolver
+		projectNotes: ProjectNotesResolver,
+		projectNote: ProjectNoteResolver
 	},
 	Mutation: {
 		createProjectNote: createProjectNoteResolver

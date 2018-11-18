@@ -4,12 +4,12 @@ import IUser from '../interfaces/models/IUser';
 // import bcrypt from 'bcrypt';
 import { AUTH_TOKEN_SECRET, REFRESH_SECRET } from '../configs/secrets';
 
-export async function createAuthToken(user: IUser): Promise<string> {
+export async function createAuthToken(user: any): Promise<string> {
 	const secret = AUTH_TOKEN_SECRET; // TODO: Change this later;
 	const authToken = await jwt.sign(
-		{ user: _.pick(user, ['id', 'roles']) },
+		{ user: user._id.toHexString(), username: user.username },
 		secret,
-		{ expiresIn: '1h' }
+		{ expiresIn: '1d' }
 	);
 	return authToken;
 }
@@ -17,7 +17,7 @@ export async function createAuthToken(user: IUser): Promise<string> {
 export async function createRefreshToken(user: IUser) {
 	const secret = REFRESH_SECRET; // TODO: Change this later.
 	const refreshToken = await jwt.sign(
-		{ user: _.pick(user, ['id', 'roles']) },
+		{ user: _.pick(user, ['_id', 'username']) },
 		secret,
 		{ expiresIn: '7d' }
 	);

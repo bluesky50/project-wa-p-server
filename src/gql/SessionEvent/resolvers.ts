@@ -15,11 +15,15 @@ const createSessionEventResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISessionEvent, context: IResolverContext): Promise<ISessionEvent> => {
 		const newSessionEvent = await new context.models.SessionEvent({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			sessionId: args.sessionId,
+			userId: args.userId,
+			startTime: args.startTime,
+			endTime: args.endTime,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newSessionEvent) {
@@ -32,8 +36,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		SessionEvents: SessionEventsResolver,
-		SessionEvent: SessionEventResolver
+		sessionEvents: SessionEventsResolver,
+		sessionEvent: SessionEventResolver
 	},
 	Mutation: {
 		createSessionEvent: createSessionEventResolver

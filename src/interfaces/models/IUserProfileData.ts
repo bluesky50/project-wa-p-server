@@ -1,10 +1,8 @@
 interface IUserProfileData {
-	updatedAt?: string;
-title?: string;
-description?: string;
-type?: string;
-category?: string;
-tags?: Array<string>;
+	userId?: string;
+	about?: string;
+	status?: string;
+	additional?: string;
 }
 
 export default IUserProfileData;

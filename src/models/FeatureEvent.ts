@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import ISessionEvent from '../interfaces/models/ISessionEvent';
+import IFeatureEvent from '../interfaces/models/IFeatureEvent';
 
-export interface ISessionEventDocument extends mongoose.Document, ISessionEvent {}
+export interface IFeatureEventDocument extends mongoose.Document, IFeatureEvent {}
 
-export interface ISessionEventModel extends mongoose.Model<ISessionEventDocument> {}
+export interface IFeatureEventModel extends mongoose.Model<IFeatureEventDocument> {}
 
-const SessionEventSchema: mongoose.Schema = new mongoose.Schema({
+const FeatureEventSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
@@ -13,31 +13,17 @@ const SessionEventSchema: mongoose.Schema = new mongoose.Schema({
 		maxLength: 24,
 		minLength: 1
 	},
-	sessionId: {
+	feature: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
 		ref: '',
 	},
-	userId: {
+	session: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
 		ref: '',
-	},
-	startTime: {
-		type: String,
-		required: false,
-		default: '',
-		maxLength: 24,
-		minLength: 1
-	},
-	endTime: {
-		type: String,
-		required: false,
-		default: '',
-		maxLength: 24,
-		minLength: 1
 	},
 	title: {
 		type: String,
@@ -77,7 +63,7 @@ const SessionEventSchema: mongoose.Schema = new mongoose.Schema({
 	}
 }, { versionKey: false });
 
-const SessionEvent: ISessionEventModel = mongoose.model<ISessionEventDocument, ISessionEventModel>('SessionEvent', SessionEventSchema, 'SessionEvents');
+const FeatureEvent: IFeatureEventModel = mongoose.model<IFeatureEventDocument, IFeatureEventModel>('FeatureEvent', FeatureEventSchema, 'FeatureEvents');
 
-export default SessionEvent;
+export default FeatureEvent;
 

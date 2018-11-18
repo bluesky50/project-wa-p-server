@@ -1,7 +1,7 @@
-interface ISessionNote {
+interface IFeatureEvent {
 	updatedAt?: string;
-	sessionId?: string;
-	creator?: string;
+	feature?: string;
+	session?: string;
 	title?: string;
 	description?: string;
 	type?: string;
@@ -9,5 +9,5 @@ interface ISessionNote {
 	tags?: Array<string>;
 }
 
-export default ISessionNote;
+export default IFeatureEvent;
 

@@ -14,12 +14,10 @@ const UserProfileDataResolver = async (parent: any, args: { id: string }, contex
 const createUserProfileDataResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IUserProfileData, context: IResolverContext): Promise<IUserProfileData> => {
 		const newUserProfileData = await new context.models.UserProfileData({
-			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			userId: args.userId,
+			about: args.about,
+			status: args.status,
+			additional: args.additional
 		}).save();
 
 		if (newUserProfileData) {
@@ -32,8 +30,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		UserProfileDatas: UserProfileDatasResolver,
-		UserProfileData: UserProfileDataResolver
+		userProfileDatas: UserProfileDatasResolver,
+		userProfileData: UserProfileDataResolver
 	},
 	Mutation: {
 		createUserProfileData: createUserProfileDataResolver

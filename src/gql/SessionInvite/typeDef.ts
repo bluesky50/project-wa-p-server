@@ -2,6 +2,9 @@
 export const typeDefs: string = `
 type SessionInvite {
 updatedAt: String
+creator: String
+destination: String
+sessionId: String
 title: String
 description: String
 type: String
@@ -16,5 +19,5 @@ sessionInvite(id: String!): SessionInvite!
 `;
 
 export const mutations: string = `
-createsessionInvite(updatedAt: String, title: String, description: String, type: String, category: String, tags: [String]): SessionInvite
+createSessionInvite(updatedAt: String, creator: String, destination: String, sessionId: String, title: String, description: String, type: String, category: String, tags: [String]): SessionInvite
 `;

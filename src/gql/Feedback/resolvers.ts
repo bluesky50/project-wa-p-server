@@ -15,11 +15,13 @@ const createFeedbackResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IFeedback, context: IResolverContext): Promise<IFeedback> => {
 		const newFeedback = await new context.models.Feedback({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			creator: args.creator,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags,
+			votes: args.votes
 		}).save();
 
 		if (newFeedback) {
@@ -32,8 +34,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		Feedbacks: FeedbacksResolver,
-		Feedback: FeedbackResolver
+		feedbacks: FeedbacksResolver,
+		feedback: FeedbackResolver
 	},
 	Mutation: {
 		createFeedback: createFeedbackResolver

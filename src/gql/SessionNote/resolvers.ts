@@ -15,11 +15,13 @@ const createSessionNoteResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISessionNote, context: IResolverContext): Promise<ISessionNote> => {
 		const newSessionNote = await new context.models.SessionNote({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			sessionId: args.sessionId,
+			creator: args.creator,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newSessionNote) {
@@ -32,8 +34,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		SessionNotes: SessionNotesResolver,
-		SessionNote: SessionNoteResolver
+		sessionNotes: SessionNotesResolver,
+		sessionNote: SessionNoteResolver
 	},
 	Mutation: {
 		createSessionNote: createSessionNoteResolver

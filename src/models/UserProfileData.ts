@@ -6,48 +6,33 @@ export interface IUserProfileDataDocument extends mongoose.Document, IUserProfil
 export interface IUserProfileDataModel extends mongoose.Model<IUserProfileDataDocument> {}
 
 const UserProfileDataSchema: mongoose.Schema = new mongoose.Schema({
-	updatedAt: {
-	type: mongoose.Schema.Types.ObjectId,
-	required: false,
-	default: null,
-	ref: '',
-},
-title: {
-	type: String,
-	required: false,
-	default: '',
-	maxLength: 24,
-	minLength: 1
-},
-description: {
-	type: String,
-	required: false,
-	default: '',
-	maxLength: 24,
-	minLength: 1
-},
-type: {
-	type: String,
-	required: false,
-	default: '',
-	maxLength: 24,
-	minLength: 1
-},
-category: {
-	type: String,
-	required: false,
-	default: '',
-	maxLength: 24,
-	minLength: 1
-},
-tags: {
-	type: [{
+	userId: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: false,
+		default: null,
+		ref: '',
+	},
+	about: {
 		type: String,
-		ref: ''
-	}],
-	required: false,
-	default: [],
-}
+		required: false,
+		default: '',
+		maxLength: 24,
+		minLength: 1
+	},
+	status: {
+		type: String,
+		required: false,
+		default: '',
+		maxLength: 24,
+		minLength: 1
+	},
+	additional: {
+		type: String,
+		required: false,
+		default: '',
+		maxLength: 24,
+		minLength: 1
+	}
 }, { versionKey: false });
 
 const UserProfileData: IUserProfileDataModel = mongoose.model<IUserProfileDataDocument, IUserProfileDataModel>('UserProfileData', UserProfileDataSchema, 'UserProfileDatas');

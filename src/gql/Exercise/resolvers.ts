@@ -15,11 +15,13 @@ const createExerciseResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IExercise, context: IResolverContext): Promise<IExercise> => {
 		const newExercise = await new context.models.Exercise({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			creator: args.creator,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags,
+			requirements: args.requirements
 		}).save();
 
 		if (newExercise) {
@@ -32,8 +34,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		Exercises: ExercisesResolver,
-		Exercise: ExerciseResolver
+		exercises: ExercisesResolver,
+		exercise: ExerciseResolver
 	},
 	Mutation: {
 		createExercise: createExerciseResolver

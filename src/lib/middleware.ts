@@ -22,14 +22,16 @@ const middleware = {
 // Middleware function that gets the user from the authToken header.
 function authTokenMiddleware() {
 	return async function (ctx: Koa.Context, next: () => Promise<any>): Promise<any> {
+		// console.log('authTokenMiddleware');
 		const AuthorizationHeader = ctx.request.headers['authorization'];
-
+		console.log(AuthorizationHeader);
 		let authToken: any = null;
 		if (AuthorizationHeader) {
 			authToken = AuthorizationHeader.replace('Bearer ', '');
 		}
 		
 		ctx.state.user = null;
+		// console.log('setting ctx.state.user = null', ctx);
 
 		// Check if auth token is black listed.
 		
@@ -67,8 +69,8 @@ function authTokenMiddleware() {
 						}
 					}
 
-				} else if (decodedAuthToken.user.id && !isExpired(decodedAuthToken)) {
-					const usr = await User.findByAuthToken(decodedAuthToken.user.id, authToken).populate('roles', 'title');
+				} else if (decodedAuthToken.user._id && !isExpired(decodedAuthToken)) {
+					const usr = await User.findByAuthToken(decodedAuthToken.user._id, authToken);
 					if (usr) {
 						ctx.state.user = usr;
 					}
@@ -81,8 +83,6 @@ function authTokenMiddleware() {
 			}
 		}
 
-		
-		
 		return next();
 	}
 }

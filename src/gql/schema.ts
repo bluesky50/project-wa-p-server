@@ -2,7 +2,10 @@ import _ from 'lodash';
 
 import IDefinition from '../interfaces/gql/IDefinition';
 import { makeExecutableSchema, IResolvers } from 'graphql-tools';
+import { gql } from 'apollo-server-koa';
 
+import * as authTypeDef from './Auth/typeDef';
+import authResolver from './Auth/resolvers';
 import * as feedbackTypeDef from './Feedback/typeDef';
 import feedbackResolver from './Feedback/resolvers';
 import * as exerciseTypeDef from './Exercise/typeDef';
@@ -19,6 +22,8 @@ import * as projectFeatureTypeDef from './ProjectFeature/typeDef';
 import projectFeatureResolver from './ProjectFeature/resolvers';
 import * as sessionTypeDef from './Session/typeDef';
 import sessionResolver from './Session/resolvers';
+import * as featureEventTypeDef from './FeatureEvent/typeDef';
+import featureEventResolver from './FeatureEvent/resolvers';
 import * as sessionInviteTypeDef from './SessionInvite/typeDef';
 import sessionInviteResolver from './SessionInvite/resolvers';
 import * as sessionNoteTypeDef from './SessionNote/typeDef';
@@ -37,6 +42,7 @@ const subscriptions: Array<string> = [];
 
 const gqlTypeDefinitionsArray: Array<IDefinition> = [];
 
+gqlTypeDefinitionsArray.push(authTypeDef);
 gqlTypeDefinitionsArray.push(feedbackTypeDef);
 gqlTypeDefinitionsArray.push(exerciseTypeDef);
 gqlTypeDefinitionsArray.push(exerciseRequirementTypeDef);
@@ -45,6 +51,7 @@ gqlTypeDefinitionsArray.push(projectTypeDef);
 gqlTypeDefinitionsArray.push(projectNoteTypeDef);
 gqlTypeDefinitionsArray.push(projectFeatureTypeDef);
 gqlTypeDefinitionsArray.push(sessionTypeDef);
+gqlTypeDefinitionsArray.push(featureEventTypeDef);
 gqlTypeDefinitionsArray.push(sessionInviteTypeDef);
 gqlTypeDefinitionsArray.push(sessionNoteTypeDef);
 gqlTypeDefinitionsArray.push(userTypeDef);
@@ -70,35 +77,48 @@ gqlTypeDefinitionsArray.forEach((d: IDefinition): void => {
 });
 
 const TypeDefs: string = `
-${types.join(REPLACE_WITH_NEW_LINE)}
+${types.join('\n')}
 `;
+
+// const gqlTypeDefs: any = gql`${TypeDefs}`;
 
 const QueryDef: string = `
 type Query {
-${queries.join(REPLACE_WITH_NEW_LINE)}
+${queries.join('\n')}
 }
 `;
+
+// const gqlQueryDef: any = gql`${QueryDef}`;
 
 const MutationDef: string = `
 type Mutation {
-${mutations.join(REPLACE_WITH_NEW_LINE)}
+${mutations.join('\n')}
 }
 `;
+
+// const gqlMutationDef: any = gql`${MutationDef}`;
 
 const SubscriptionDef: string = `
 type Subscription {
-${subscriptions.join(REPLACE_WITH_NEW_LINE)}
+${subscriptions.join('\n')}
 }
 `;
 
-const gqlDefs: Array<string> = [ QueryDef, MutationDef ];
-const typeDefs: Array<string> = types;
-const mergedResolvers: IResolvers<any, any> = _.merge(feedbackResolver, exerciseResolver, exerciseRequirementResolver, sessionEventResolver, projectResolver, projectNoteResolver, projectFeatureResolver, sessionResolver, sessionInviteResolver, sessionNoteResolver, userResolver, userProfileDataResolver, userWorkDataResolver);
+// const gqlDefs: Array<string> = [ QueryDef, MutationDef, TypeDefs ];
+const allDefs: any = [TypeDefs, QueryDef, MutationDef].join('\n')
+const gqlDefs: any = gql`${allDefs}`;
+// const typeDefs: Array<string> = types;
+const mergedResolvers: IResolvers<any, any> = _.merge(authResolver, feedbackResolver, exerciseResolver, exerciseRequirementResolver, sessionEventResolver, projectResolver, projectNoteResolver, projectFeatureResolver, sessionResolver, featureEventResolver, sessionInviteResolver, sessionNoteResolver, userResolver, userProfileDataResolver, userWorkDataResolver);
 
-const gqlSchema = makeExecutableSchema({
-	typeDefs: [ ...gqlDefs, ...typeDefs ],
+// const gqlSchema = makeExecutableSchema({
+// 	typeDefs: [ ...gqlDefs, ...typeDefs ],
+// 	resolvers: mergedResolvers
+// });
+
+export const nonExecutableGqlSchema = {
+	typeDefs: gqlDefs,
 	resolvers: mergedResolvers
-});
+}
 
-export default gqlSchema;
+// export default gqlSchema;
 

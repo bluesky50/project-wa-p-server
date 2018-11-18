@@ -1,10 +1,7 @@
 interface IUserWorkData {
-	updatedAt?: string;
-title?: string;
-description?: string;
-type?: string;
-category?: string;
-tags?: Array<string>;
+	followedProjects?: Array<string>;
+	followedSessions?: Array<string>;
+	followedExercises?: Array<string>;
 }
 
 export default IUserWorkData;

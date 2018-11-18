@@ -2,11 +2,10 @@
 export const typeDefs: string = `
 type User {
 updatedAt: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+username: String
+email: String
+userProfileData: String
+userWorkData: String
 }
 `;
 
@@ -16,5 +15,5 @@ user(id: String!): User!
 `;
 
 export const mutations: string = `
-createuser(updatedAt: String, title: String, description: String, type: String, category: String, tags: [String]): User
+createUser(updatedAt: String, username: String, email: String, password: String, authToken: String, refreshToken: String, userProfileData: String, userWorkData: String): User
 `;

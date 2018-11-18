@@ -15,11 +15,13 @@ const createProjectFeatureResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IProjectFeature, context: IResolverContext): Promise<IProjectFeature> => {
 		const newProjectFeature = await new context.models.ProjectFeature({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			projectId: args.projectId,
+			creator: args.creator,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newProjectFeature) {
@@ -32,8 +34,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		ProjectFeatures: ProjectFeaturesResolver,
-		ProjectFeature: ProjectFeatureResolver
+		projectFeatures: ProjectFeaturesResolver,
+		projectFeature: ProjectFeatureResolver
 	},
 	Mutation: {
 		createProjectFeature: createProjectFeatureResolver

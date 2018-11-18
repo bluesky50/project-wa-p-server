@@ -1,10 +1,12 @@
 interface IExercise {
 	updatedAt?: string;
-title?: string;
-description?: string;
-type?: string;
-category?: string;
-tags?: Array<string>;
+	creator?: string;
+	title?: string;
+	description?: string;
+	type?: string;
+	category?: string;
+	tags?: Array<string>;
+	requirements?: Array<string>;
 }
 
 export default IExercise;

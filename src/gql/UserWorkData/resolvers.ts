@@ -14,12 +14,9 @@ const UserWorkDataResolver = async (parent: any, args: { id: string }, context: 
 const createUserWorkDataResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IUserWorkData, context: IResolverContext): Promise<IUserWorkData> => {
 		const newUserWorkData = await new context.models.UserWorkData({
-			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			followedProjects: args.followedProjects,
+			followedSessions: args.followedSessions,
+			followedExercises: args.followedExercises
 		}).save();
 
 		if (newUserWorkData) {
@@ -32,8 +29,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		UserWorkDatas: UserWorkDatasResolver,
-		UserWorkData: UserWorkDataResolver
+		userWorkDatas: UserWorkDatasResolver,
+		userWorkData: UserWorkDataResolver
 	},
 	Mutation: {
 		createUserWorkData: createUserWorkDataResolver

@@ -15,11 +15,14 @@ const createSessionInviteResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISessionInvite, context: IResolverContext): Promise<ISessionInvite> => {
 		const newSessionInvite = await new context.models.SessionInvite({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			creator: args.creator,
+			destination: args.destination,
+			sessionId: args.sessionId,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newSessionInvite) {
@@ -32,8 +35,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		SessionInvites: SessionInvitesResolver,
-		SessionInvite: SessionInviteResolver
+		sessionInvites: SessionInvitesResolver,
+		sessionInvite: SessionInviteResolver
 	},
 	Mutation: {
 		createSessionInvite: createSessionInviteResolver

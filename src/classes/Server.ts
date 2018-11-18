@@ -1,17 +1,19 @@
 import Koa from 'koa';
 import { createServer } from 'http';
 
-import { execute, subscribe } from 'graphql';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
+// import { execute, subscribe } from 'graphql';
+// import { SubscriptionServer } from 'subscriptions-transport-ws';
 
-import schema from '../gql/schema';
+// import schema from '../gql/schema';
+import { nonExecutableGqlSchema } from '../gql/schema';
 import { OrmAdapter } from './OrmAdapter';
-import { applyMiddleware, addGraphQLRoute } from '../utils/serverInitHelpers';
+// import { applyMiddleware, addGraphQLRoute } from '../utils/serverInitHelpers';
 import { normalizePort, onError, onListening } from '../utils/serverHelpers';
 
 import debug from '../lib/debugger';
 import IServer from '../interfaces/class/IServer';
 import IOrmAdapter from '../interfaces/class/IOrmAdapter';
+import { applyMiddleware, addGraphQLRoute } from '../utils/serverInitHelpers';
 
 export class Server implements IServer {
 	public app: Koa;
@@ -51,25 +53,32 @@ export class Server implements IServer {
 
 	private _start() {
 		debug('Start sequence...');
-		// Create http server and configure gql subscriptions.
-		const wss = createServer(this.app.callback());
-		this.httpServer = wss;
-	
-		const port = normalizePort(this.serverConfig.port);
 
+		const port = normalizePort(this.serverConfig.port);
+		this.httpServer = createServer(this.app.callback());
 		this.httpServer.on('error', onError(port));
 		this.httpServer.on('listening', onListening(this.httpServer));
+		this.httpServer.listen(port);
 
-		this.httpServer.listen(port, (ctx: Koa.Context) => {
-			new SubscriptionServer({
-				execute,
-				subscribe,
-				schema
-			}, {
-				server: this.httpServer,
-				path: this.serverConfig.gqlSubscriptionsEndpoint
-			});
-		});
+		// Create http server and configure gql subscriptions.
+		// const wss = createServer(this.app.callback());
+		// this.httpServer = wss;
+	
+		// const port = normalizePort(this.serverConfig.port);
+
+		// this.httpServer.on('error', onError(port));
+		// this.httpServer.on('listening', onListening(this.httpServer));
+
+		// this.httpServer.listen(port, (ctx: Koa.Context) => {
+		// 	new SubscriptionServer({
+		// 		execute,
+		// 		subscribe,
+		// 		schema
+		// 	}, {
+		// 		server: this.httpServer,
+		// 		path: this.serverConfig.gqlSubscriptionsEndpoint
+		// 	});
+		// });
 	}
 
 	private _post() {
@@ -88,15 +97,15 @@ export class Server implements IServer {
 
 	private _initializeApp() {
 		if (this.app === undefined || this.app === null) {
+			
 			this.app = new Koa();
+			applyMiddleware(this.app);	
 		}
-
-		applyMiddleware(this.app);
 	}
 
 	private _initializeRoutes() {
 		// Create graphql endpoint.
-		addGraphQLRoute(this.app, this.serverConfig.gqlEndpoint, schema, this.ormAdapter.getModels());
+		addGraphQLRoute(this.app, this.serverConfig.gqlEndpoint, this.ormAdapter.getModels());
 	}
 }
 

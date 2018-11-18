@@ -15,11 +15,12 @@ const createSessionResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISession, context: IResolverContext): Promise<ISession> => {
 		const newSession = await new context.models.Session({
 			updatedAt: args.updatedAt,
-title: args.title,
-description: args.description,
-type: args.type,
-category: args.category,
-tags: args.tags
+			creator: args.creator,
+			title: args.title,
+			description: args.description,
+			type: args.type,
+			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newSession) {
@@ -32,8 +33,8 @@ tags: args.tags
 
 const resolvers: IResolverMap = {
 	Query: {
-		Sessions: SessionsResolver,
-		Session: SessionResolver
+		sessions: SessionsResolver,
+		session: SessionResolver
 	},
 	Mutation: {
 		createSession: createSessionResolver

@@ -2,6 +2,8 @@
 export const typeDefs: string = `
 type ProjectFeature {
 updatedAt: String
+projectId: String
+creator: String
 title: String
 description: String
 type: String
@@ -16,5 +18,5 @@ projectFeature(id: String!): ProjectFeature!
 `;
 
 export const mutations: string = `
-createprojectFeature(updatedAt: String, title: String, description: String, type: String, category: String, tags: [String]): ProjectFeature
+createProjectFeature(updatedAt: String, projectId: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): ProjectFeature
 `;

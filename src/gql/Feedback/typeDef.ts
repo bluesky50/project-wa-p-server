@@ -2,11 +2,13 @@
 export const typeDefs: string = `
 type Feedback {
 updatedAt: String
+creator: String
 title: String
 description: String
 type: String
 category: String
 tags: [String]
+votes: [String]
 }
 `;
 
@@ -16,5 +18,5 @@ feedback(id: String!): Feedback!
 `;
 
 export const mutations: string = `
-createfeedback(updatedAt: String, title: String, description: String, type: String, category: String, tags: [String]): Feedback
+createFeedback(updatedAt: String, creator: String, title: String, description: String, type: String, category: String, tags: [String], votes: [String]): Feedback
 `;
