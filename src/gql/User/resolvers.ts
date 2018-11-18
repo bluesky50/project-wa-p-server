@@ -11,7 +11,7 @@ const UsersResolver = isAuthenticatedResolver.createResolver(
 
 const UserResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: { id: string }, context: IResolverContext): Promise<IUser> => {
-		return await context.models.User.findById(args.id).select('-password');
+		return await context.models.User.findById(args.id).select('-password -authToken -refreshToken');
 	}
 )
 
