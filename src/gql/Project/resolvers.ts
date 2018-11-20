@@ -15,13 +15,11 @@ const createProjectResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IProject, context: IResolverContext): Promise<IProject> => {
 		const newProject = await new context.models.Project({
 			updatedAt: args.updatedAt,
-			creator: args.creator,
+			creator: context.state.user.id,
 			title: args.title,
 			description: args.description,
-			features: args.features,
 			type: args.type,
 			category: args.category,
-			tags: args.tags
 		}).save();
 
 		if (newProject) {
