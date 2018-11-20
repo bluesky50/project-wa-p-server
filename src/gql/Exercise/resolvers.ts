@@ -2,6 +2,7 @@ import IExercise from '../../interfaces/models/IExercise';
 import { isAuthenticatedResolver } from '../resolvers';
 import IResolverMap from '../../interfaces/gql/IResolverMap';
 import IResolverContext from '../../interfaces/gql/IResolverContext';
+import { canNotDefineSchemaWithinExtensionMessage } from 'graphql/validation/rules/LoneSchemaDefinition';
 
 const ExercisesResolver = async (parent: any, args: {}, context: IResolverContext): Promise<IExercise> => {
 	return await context.models.Exercise.find();
@@ -14,14 +15,13 @@ const ExerciseResolver = async (parent: any, args: { id: string }, context: IRes
 const createExerciseResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IExercise, context: IResolverContext): Promise<IExercise> => {
 		const newExercise = await new context.models.Exercise({
-			updatedAt: args.updatedAt,
-			creator: args.creator,
+			updatedAt: '11/18/2018',
+			creator: context.state.user._id,
 			title: args.title,
 			description: args.description,
 			type: args.type,
 			category: args.category,
 			tags: args.tags,
-			requirements: args.requirements
 		}).save();
 
 		if (newExercise) {

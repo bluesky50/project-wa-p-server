@@ -65,6 +65,13 @@ const ExerciseSchema: mongoose.Schema = new mongoose.Schema({
 	}
 }, { versionKey: false });
 
+ExerciseSchema.methods.toJSON = function() {
+	const exercise = this;
+	const exerciseObject = exercise.toObject();
+	exerciseObject._id = exerciseObject._id.toString();
+	return exerciseObject;
+}
+
 const Exercise: IExerciseModel = mongoose.model<IExerciseDocument, IExerciseModel>('Exercise', ExerciseSchema, 'Exercises');
 
 export default Exercise;

@@ -1,6 +1,7 @@
 
 export const typeDefs: string = `
 type Exercise {
+	id: String
 	updatedAt: String
 	creator: String
 	title: String
@@ -8,7 +9,6 @@ type Exercise {
 	type: String
 	category: String
 	tags: [String]
-	requirements: [String]
 }
 `;
 
@@ -18,5 +18,5 @@ exercise(id: String!): Exercise!
 `;
 
 export const mutations: string = `
-createExercise(updatedAt: String, creator: String, title: String, description: String, type: String, category: String, tags: [String], requirements: [String]): Exercise
+createExercise(updatedAt: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): Exercise
 `;

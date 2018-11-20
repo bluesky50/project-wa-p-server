@@ -24,12 +24,13 @@ function authTokenMiddleware() {
 	return async function (ctx: Koa.Context, next: () => Promise<any>): Promise<any> {
 		// console.log('authTokenMiddleware');
 		const AuthorizationHeader = ctx.request.headers['authorization'];
-		console.log(AuthorizationHeader);
+		// console.log(AuthorizationHeader);
 		let authToken: any = null;
 		if (AuthorizationHeader) {
 			authToken = AuthorizationHeader.replace('Bearer ', '');
 		}
-		
+
+		console.log("authToken", authToken);
 		ctx.state.user = null;
 		// console.log('setting ctx.state.user = null', ctx);
 
@@ -44,7 +45,7 @@ function authTokenMiddleware() {
 		if (authToken) {
 			try {
 				const decodedAuthToken: any = jwt.verify(authToken, AUTH_TOKEN_SECRET);
-				
+				console.log("decodedAuthToken", decodedAuthToken);
 				if (isExpired(decodedAuthToken)) {
 
 					const refreshToken = ctx.request.headers['x-refresh-token'];
@@ -69,8 +70,8 @@ function authTokenMiddleware() {
 						}
 					}
 
-				} else if (decodedAuthToken.user._id && !isExpired(decodedAuthToken)) {
-					const usr = await User.findByAuthToken(decodedAuthToken.user._id, authToken);
+				} else if (decodedAuthToken.info.userId && !isExpired(decodedAuthToken)) {
+					const usr = await User.findByAuthToken(decodedAuthToken.info.userId, authToken);
 					if (usr) {
 						ctx.state.user = usr;
 					}
