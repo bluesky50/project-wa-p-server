@@ -2,7 +2,6 @@ import IExercise from '../../interfaces/models/IExercise';
 import { isAuthenticatedResolver } from '../resolvers';
 import IResolverMap from '../../interfaces/gql/IResolverMap';
 import IResolverContext from '../../interfaces/gql/IResolverContext';
-import { canNotDefineSchemaWithinExtensionMessage } from 'graphql/validation/rules/LoneSchemaDefinition';
 
 const ExercisesResolver = async (parent: any, args: {}, context: IResolverContext): Promise<IExercise> => {
 	return await context.models.Exercise.find();

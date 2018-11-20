@@ -14,9 +14,9 @@ const ProjectFeatureResolver = async (parent: any, args: { id: string }, context
 const createProjectFeatureResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IProjectFeature, context: IResolverContext): Promise<IProjectFeature> => {
 		const newProjectFeature = await new context.models.ProjectFeature({
-			updatedAt: args.updatedAt,
+			updatedAt: "11/18/2018",
 			projectId: args.projectId,
-			creator: args.creator,
+			creator: context.state.user.id,
 			title: args.title,
 			description: args.description,
 			type: args.type,

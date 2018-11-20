@@ -1,16 +1,17 @@
 
 export const typeDefs: string = `
 type SessionEvent {
-updatedAt: String
-sessionId: String
-userId: String
-startTime: String
-endTime: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+	id: String
+	updatedAt: String
+	sessionId: String
+	userId: String
+	startTime: String
+	endTime: String
+	title: String
+	description: String
+	type: String
+	category: String
+	tags: [String]
 }
 `;
 
@@ -20,5 +21,5 @@ sessionEvent(id: String!): SessionEvent!
 `;
 
 export const mutations: string = `
-createSessionEvent(updatedAt: String, sessionId: String, userId: String, startTime: String, endTime: String, title: String, description: String, type: String, category: String, tags: [String]): SessionEvent
+createSessionEvent(sessionId: String, userId: String, startTime: String, endTime: String, title: String, description: String, type: String, category: String, tags: [String]): SessionEvent
 `;

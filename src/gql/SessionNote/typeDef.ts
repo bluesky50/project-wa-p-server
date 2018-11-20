@@ -1,14 +1,15 @@
 
 export const typeDefs: string = `
 type SessionNote {
-updatedAt: String
-sessionId: String
-creator: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+	id: String
+	updatedAt: String
+	sessionId: String
+	creator: String
+	title: String
+	description: String
+	type: String
+	category: String
+	tags: [String]
 }
 `;
 
@@ -18,5 +19,5 @@ sessionNote(id: String!): SessionNote!
 `;
 
 export const mutations: string = `
-createSessionNote(updatedAt: String, sessionId: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): SessionNote
+createSessionNote(sessionId: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): SessionNote
 `;

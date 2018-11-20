@@ -18,5 +18,5 @@ exercise(id: String!): Exercise!
 `;
 
 export const mutations: string = `
-createExercise(updatedAt: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): Exercise
+createExercise(title: String, description: String, type: String, category: String, tags: [String]): Exercise
 `;

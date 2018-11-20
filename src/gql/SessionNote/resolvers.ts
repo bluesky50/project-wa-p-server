@@ -14,9 +14,9 @@ const SessionNoteResolver = async (parent: any, args: { id: string }, context: I
 const createSessionNoteResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISessionNote, context: IResolverContext): Promise<ISessionNote> => {
 		const newSessionNote = await new context.models.SessionNote({
-			updatedAt: args.updatedAt,
+			updatedAt: "11/18/2018",
 			sessionId: args.sessionId,
-			creator: args.creator,
+			creator: context.state.user.id,
 			title: args.title,
 			description: args.description,
 			type: args.type,

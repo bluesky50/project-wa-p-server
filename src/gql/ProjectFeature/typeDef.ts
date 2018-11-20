@@ -1,14 +1,15 @@
 
 export const typeDefs: string = `
 type ProjectFeature {
-updatedAt: String
-projectId: String
-creator: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+	id: String
+	updatedAt: String
+	projectId: String
+	creator: String
+	title: String
+	description: String
+	type: String
+	category: String
+	tags: [String]
 }
 `;
 
@@ -18,5 +19,5 @@ projectFeature(id: String!): ProjectFeature!
 `;
 
 export const mutations: string = `
-createProjectFeature(updatedAt: String, projectId: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): ProjectFeature
+createProjectFeature(projectId: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): ProjectFeature
 `;

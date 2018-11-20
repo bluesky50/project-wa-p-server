@@ -14,8 +14,8 @@ const ProjectNoteResolver = async (parent: any, args: { id: string }, context: I
 const createProjectNoteResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IProjectNote, context: IResolverContext): Promise<IProjectNote> => {
 		const newProjectNote = await new context.models.ProjectNote({
-			updatedAt: args.updatedAt,
-			creator: args.creator,
+			updatedAt: "11/18/2018",
+			creator: context.state.user.id,
 			projectId: args.projectId,
 			title: args.title,
 			description: args.description,

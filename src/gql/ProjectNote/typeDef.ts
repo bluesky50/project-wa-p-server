@@ -1,14 +1,15 @@
 
 export const typeDefs: string = `
 type ProjectNote {
-updatedAt: String
-creator: String
-projectId: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+	id: String
+	updatedAt: String
+	creator: String
+	projectId: String
+	title: String
+	description: String
+	type: String
+	category: String
+	tags: [String]
 }
 `;
 
@@ -18,5 +19,5 @@ projectNote(id: String!): ProjectNote!
 `;
 
 export const mutations: string = `
-createProjectNote(updatedAt: String, creator: String, projectId: String, title: String, description: String, type: String, category: String, tags: [String]): ProjectNote
+createProjectNote(projectId: String, title: String, description: String, type: String, category: String, tags: [String]): ProjectNote
 `;

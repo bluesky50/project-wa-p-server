@@ -1,13 +1,14 @@
 
 export const typeDefs: string = `
 type Session {
-updatedAt: String
-creator: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+	id: String
+	updatedAt: String
+	creator: String
+	title: String
+	description: String
+	type: String
+	category: String
+	tags: [String]
 }
 `;
 
@@ -17,5 +18,5 @@ session(id: String!): Session!
 `;
 
 export const mutations: string = `
-createSession(updatedAt: String, creator: String, title: String, description: String, type: String, category: String, tags: [String]): Session
+createSession(title: String, description: String, type: String, category: String, tags: [String]): Session
 `;
