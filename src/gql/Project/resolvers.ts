@@ -14,12 +14,13 @@ const ProjectResolver = async (parent: any, args: { id: string }, context: IReso
 const createProjectResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IProject, context: IResolverContext): Promise<IProject> => {
 		const newProject = await new context.models.Project({
-			updatedAt: args.updatedAt,
+			updatedAt: "11/18/2018",
 			creator: context.state.user.id,
 			title: args.title,
 			description: args.description,
 			type: args.type,
 			category: args.category,
+			tags: args.tags
 		}).save();
 
 		if (newProject) {
