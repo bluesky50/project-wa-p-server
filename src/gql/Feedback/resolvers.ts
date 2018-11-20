@@ -14,8 +14,8 @@ const FeedbackResolver = async (parent: any, args: { id: string }, context: IRes
 const createFeedbackResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IFeedback, context: IResolverContext): Promise<IFeedback> => {
 		const newFeedback = await new context.models.Feedback({
-			updatedAt: args.updatedAt,
-			creator: args.creator,
+			updatedAt: "11/18/2018",
+			creator: context.state.user.id,
 			title: args.title,
 			description: args.description,
 			type: args.type,

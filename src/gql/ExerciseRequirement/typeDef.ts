@@ -1,14 +1,15 @@
 
 export const typeDefs: string = `
 type ExerciseRequirement {
-updatedAt: String
-creator: String
-exerciseId: String
-title: String
-description: String
-type: String
-category: String
-tags: [String]
+	id: String
+	updatedAt: String
+	creator: String
+	exerciseId: String
+	title: String
+	description: String
+	type: String
+	category: String
+	tags: [String]
 }
 `;
 
@@ -18,5 +19,5 @@ exerciseRequirement(id: String!): ExerciseRequirement!
 `;
 
 export const mutations: string = `
-createExerciseRequirement(updatedAt: String, creator: String, exerciseId: String, title: String, description: String, type: String, category: String, tags: [String]): ExerciseRequirement
+createExerciseRequirement(exerciseId: String, title: String, description: String, type: String, category: String, tags: [String]): ExerciseRequirement
 `;
