@@ -9,7 +9,7 @@ const ProjectSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'today',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -17,7 +17,7 @@ const ProjectSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	title: {
 		type: String,
@@ -36,7 +36,7 @@ const ProjectSchema: mongoose.Schema = new mongoose.Schema({
 	features: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: ''
+			ref: 'ProjectFeature'
 		}],
 		required: false,
 		default: [],
@@ -58,7 +58,6 @@ const ProjectSchema: mongoose.Schema = new mongoose.Schema({
 	tags: {
 		type: [{
 			type: String,
-			ref: ''
 		}],
 		required: false,
 		default: [],

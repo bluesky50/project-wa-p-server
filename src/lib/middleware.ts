@@ -30,7 +30,7 @@ function authTokenMiddleware() {
 			authToken = AuthorizationHeader.replace('Bearer ', '');
 		}
 
-		console.log("authToken", authToken);
+		// console.log("authToken", authToken);
 		ctx.state.user = null;
 		// console.log('setting ctx.state.user = null', ctx);
 
@@ -45,7 +45,7 @@ function authTokenMiddleware() {
 		if (authToken) {
 			try {
 				const decodedAuthToken: any = jwt.verify(authToken, AUTH_TOKEN_SECRET);
-				console.log("decodedAuthToken", decodedAuthToken);
+				// console.log("decodedAuthToken", decodedAuthToken);
 				if (isExpired(decodedAuthToken)) {
 
 					const refreshToken = ctx.request.headers['x-refresh-token'];

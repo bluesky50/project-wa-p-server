@@ -5,6 +5,7 @@ type Session {
 	updatedAt: String
 	creator: String
 	title: String
+	participants: [User!]
 	description: String
 	type: String
 	category: String

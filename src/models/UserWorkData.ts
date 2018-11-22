@@ -9,7 +9,7 @@ const UserWorkDataSchema: mongoose.Schema = new mongoose.Schema({
 	followedProjects: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: ''
+			ref: 'Project'
 		}],
 		required: false,
 		default: [],
@@ -17,7 +17,7 @@ const UserWorkDataSchema: mongoose.Schema = new mongoose.Schema({
 	followedSessions: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: ''
+			ref: 'Session'
 		}],
 		required: false,
 		default: [],
@@ -25,7 +25,7 @@ const UserWorkDataSchema: mongoose.Schema = new mongoose.Schema({
 	followedExercises: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: ''
+			ref: 'Exercise'
 		}],
 		required: false,
 		default: [],

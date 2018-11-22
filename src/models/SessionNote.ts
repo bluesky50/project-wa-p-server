@@ -10,31 +10,31 @@ const SessionNoteSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'today',
 	},
 	sessionId: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'Session',
 	},
 	creator: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'sn-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'sn-dflt-desc',
 		maxLength: 24,
 		minLength: 1
 	},

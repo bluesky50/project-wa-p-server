@@ -22,28 +22,24 @@ const UserSchema: mongoose.Schema = new mongoose.Schema({
 		type: String,
 		required: false,
 		default: null,
-		ref: '',
 	},
 	username: {
 		type: String,
 		unique: true,
-		required: false,
-		default: '',
+		required: true,
 		maxLength: 24,
 		minLength: 1,
 	},
 	email: {
 		type: String,
 		unique: true,
-		required: false,
-		default: '',
+		required: true,
 		maxLength: 24,
 		minLength: 1
 	},
 	password: {
 		type: String,
-		required: false,
-		default: '',
+		required: true,
 		maxLength: 24,
 		minLength: 1
 	},

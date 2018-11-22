@@ -9,7 +9,7 @@ const FeatureEventSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'today',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -17,25 +17,25 @@ const FeatureEventSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'ProjectFeature',
 	},
 	session: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'Session',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'ftr-event-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'ftr-event-dflt-desc',
 		maxLength: 24,
 		minLength: 1
 	},

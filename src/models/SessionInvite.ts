@@ -10,37 +10,37 @@ const SessionInviteSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'today',
 	},
 	creator: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	destination: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	sessionId: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'Session',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'si-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'si-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},

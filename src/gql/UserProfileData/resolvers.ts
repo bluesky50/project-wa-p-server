@@ -15,6 +15,7 @@ const createUserProfileDataResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IUserProfileData, context: IResolverContext): Promise<IUserProfileData> => {
 		const newUserProfileData = await new context.models.UserProfileData({
 			userId: args.userId,
+			userAlias: args.userAlias,
 			about: args.about,
 			status: args.status,
 			additional: args.additional

@@ -9,7 +9,7 @@ const ExerciseSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'today',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -17,19 +17,19 @@ const ExerciseSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'exercise-default-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'exercise-default-desc',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -58,7 +58,7 @@ const ExerciseSchema: mongoose.Schema = new mongoose.Schema({
 	requirements: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: ''
+			ref: 'ExerciseRequirement'
 		}],
 		required: false,
 		default: [],

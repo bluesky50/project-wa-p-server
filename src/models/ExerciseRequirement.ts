@@ -10,31 +10,31 @@ const ExerciseRequirementSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'today',
 	},
 	creator: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	exerciseId: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'Exercise',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'exc-req-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'exc-req-dflt-desc',
 		maxLength: 24,
 		minLength: 1
 	},

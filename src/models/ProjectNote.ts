@@ -9,7 +9,7 @@ const ProjectNoteSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'today',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -17,25 +17,25 @@ const ProjectNoteSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	projectId: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'Project',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'pn-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'pn-dflt-desc',
 		maxLength: 24,
 		minLength: 1
 	},

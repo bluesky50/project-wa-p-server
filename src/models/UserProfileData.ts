@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import IUserProfileData from '../interfaces/models/IUserProfileData';
+import { noSubselectionAllowedMessage } from 'graphql/validation/rules/ScalarLeafs';
 
 export interface IUserProfileDataDocument extends mongoose.Document, IUserProfileData {}
 
@@ -10,7 +11,12 @@ const UserProfileDataSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
+	},
+	userAlias: {
+		type: String,
+		required: false,
+		default: null,
 	},
 	about: {
 		type: String,

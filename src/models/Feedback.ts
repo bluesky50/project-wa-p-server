@@ -9,7 +9,7 @@ const FeedbackSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'today',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -17,19 +17,19 @@ const FeedbackSchema: mongoose.Schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	title: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'fb-dflt-title',
 		maxLength: 24,
 		minLength: 1
 	},
 	description: {
 		type: String,
 		required: false,
-		default: '',
+		default: 'fb-dflt-desc',
 		maxLength: 24,
 		minLength: 1
 	},
@@ -58,7 +58,7 @@ const FeedbackSchema: mongoose.Schema = new mongoose.Schema({
 	votes: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: ''
+			ref: 'User'
 		}],
 		required: false,
 		default: [],
