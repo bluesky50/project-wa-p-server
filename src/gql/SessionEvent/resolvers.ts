@@ -14,7 +14,7 @@ const SessionEventResolver = async (parent: any, args: { id: string }, context: 
 const createSessionEventResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISessionEvent, context: IResolverContext): Promise<ISessionEvent> => {
 		const newSessionEvent = await new context.models.SessionEvent({
-			updatedAt: args.updatedAt,
+			updatedAt: "today",
 			sessionId: args.sessionId,
 			userId: args.userId,
 			startTime: args.startTime,

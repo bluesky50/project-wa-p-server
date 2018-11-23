@@ -1,9 +1,10 @@
 
 export const typeDefs: string = `
 type UserWorkData {
-followedProjects: [String]
-followedSessions: [String]
-followedExercises: [String]
+	userId: String
+	followedProjects: [String]
+	followedSessions: [String]
+	followedExercises: [String]
 }
 `;
 
@@ -13,5 +14,5 @@ userWorkData(id: String!): UserWorkData!
 `;
 
 export const mutations: string = `
-createUserWorkData(followedProjects: [String], followedSessions: [String], followedExercises: [String]): UserWorkData
+createUserWorkData(userId: String!, followedProjects: [String], followedSessions: [String], followedExercises: [String]): UserWorkData
 `;

@@ -6,6 +6,11 @@ export interface IUserWorkDataDocument extends mongoose.Document, IUserWorkData 
 export interface IUserWorkDataModel extends mongoose.Model<IUserWorkDataDocument> {}
 
 const UserWorkDataSchema: mongoose.Schema = new mongoose.Schema({
+	userId: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: true,
+	},
 	followedProjects: {
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,

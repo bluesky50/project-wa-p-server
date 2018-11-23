@@ -21,7 +21,7 @@ const UserSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		required: false,
-		default: null,
+		default: 'today',
 	},
 	username: {
 		type: String,

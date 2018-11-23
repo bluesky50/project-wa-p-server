@@ -14,7 +14,7 @@ const SessionResolver = async (parent: any, args: { id: string }, context: IReso
 const createSessionResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISession, context: IResolverContext): Promise<ISession> => {
 		const newSession = await new context.models.Session({
-			updatedAt: "11/18/2018",
+			updatedAt: "today",
 			creator: context.state.user.id,
 			title: args.title,
 			description: args.description,

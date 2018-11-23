@@ -46,31 +46,32 @@ function authTokenMiddleware() {
 			try {
 				const decodedAuthToken: any = jwt.verify(authToken, AUTH_TOKEN_SECRET);
 				// console.log("decodedAuthToken", decodedAuthToken);
-				if (isExpired(decodedAuthToken)) {
+				// if (isExpired(decodedAuthToken)) {
 
-					const refreshToken = ctx.request.headers['x-refresh-token'];
-					if (refreshToken) {
-						try {
-							const decodedRefreshToken: any = jwt.verify(refreshToken, REFRESH_SECRET);
-							if (decodedRefreshToken.user.id && !isExpired(decodedRefreshToken)) {
-								const usr = await User.findByRefreshToken(decodedRefreshToken.user.id, refreshToken);
-								if (usr) {
-									// Not sure exactly how to implement refresh tokens.
+					// const refreshToken = ctx.request.headers['x-refresh-token'];
+					// if (refreshToken) {
+					// 	try {
+					// 		const decodedRefreshToken: any = jwt.verify(refreshToken, REFRESH_SECRET);
+					// 		if (decodedRefreshToken.user.id && !isExpired(decodedRefreshToken)) {
+					// 			const usr = await User.findByRefreshToken(decodedRefreshToken.user.id, refreshToken);
+					// 			if (usr) {
+					// 				// Not sure exactly how to implement refresh tokens.
 
-									// Create new auth token, save to user in data base.
-									// Should I generate new refresh token as well. 
-									const usrWithNewTokens = await usr.generateAuthToken().populate('roles', 'title');
-									// But how to send that back with the request so the client now has the updated auth token.
-									ctx.state.user = usrWithNewTokens;
-								}
-							}
+					// 				// Create new auth token, save to user in data base.
+					// 				// Should I generate new refresh token as well. 
+					// 				const usrWithNewTokens = await usr.generateAuthToken().populate('roles', 'title');
+					// 				// But how to send that back with the request so the client now has the updated auth token.
+					// 				ctx.state.user = usrWithNewTokens;
+					// 			}
+					// 		}
 
-						} catch (e) {
-							console.log(e.message);
-						}
-					}
+					// 	} catch (e) {
+					// 		console.log(e.message);
+					// 	}
+					// }
 
-				} else if (decodedAuthToken.info.userId && !isExpired(decodedAuthToken)) {
+				// } else 
+				if (decodedAuthToken.info.userId && !isExpired(decodedAuthToken)) {
 					const usr = await User.findByAuthToken(decodedAuthToken.info.userId, authToken);
 					if (usr) {
 						ctx.state.user = usr;
@@ -78,7 +79,6 @@ function authTokenMiddleware() {
 				} else {
 
 				}
-
 			} catch (e) {
 				console.log(e.message);
 			}

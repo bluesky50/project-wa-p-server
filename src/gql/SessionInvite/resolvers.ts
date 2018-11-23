@@ -14,7 +14,7 @@ const SessionInviteResolver = async (parent: any, args: { id: string }, context:
 const createSessionInviteResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISessionInvite, context: IResolverContext): Promise<ISessionInvite> => {
 		const newSessionInvite = await new context.models.SessionInvite({
-			updatedAt: "11/18/2018",
+			updatedAt: "today",
 			creator: context.state.user.id,
 			destination: args.destination,
 			sessionId: args.sessionId,

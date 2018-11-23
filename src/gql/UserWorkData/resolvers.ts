@@ -14,6 +14,7 @@ const UserWorkDataResolver = async (parent: any, args: { id: string }, context: 
 const createUserWorkDataResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IUserWorkData, context: IResolverContext): Promise<IUserWorkData> => {
 		const newUserWorkData = await new context.models.UserWorkData({
+			userId: args.userId,
 			followedProjects: args.followedProjects,
 			followedSessions: args.followedSessions,
 			followedExercises: args.followedExercises

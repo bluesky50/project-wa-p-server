@@ -14,7 +14,7 @@ const ExerciseRequirementResolver = async (parent: any, args: { id: string }, co
 const createExerciseRequirementResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IExerciseRequirement, context: IResolverContext): Promise<IExerciseRequirement> => {
 		const newExerciseRequirement = await new context.models.ExerciseRequirement({
-			updatedAt: "11/18/2018",
+			updatedAt: 'today',
 			creator: context.state.user.id,
 			exerciseId: args.exerciseId,
 			title: args.title,

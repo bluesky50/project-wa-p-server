@@ -12,5 +12,5 @@ type RegisterResponse {
 
 export const mutations: string = `
 login(username: String!, password: String!): LoginResponse!
-register(username: String!, email: String!, password: String!): RegisterResponse!
+register(username: String!, email: String!, password: String!, alias: String!, about: String!, status: String!, additional: String!): RegisterResponse!
 `

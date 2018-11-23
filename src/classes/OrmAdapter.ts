@@ -15,8 +15,8 @@ import SessionEvent from '../models/SessionEvent';
 // import SessionInvite from '../models/SessionInvite';
 // import SessionNote from '../models/SessionNote';
 import User from '../models/User';
-// import UserProfileData from '../models/UserProfileData';
-// import UserWorkData from '../models/UserWorkData';
+import UserProfileData from '../models/UserProfileData';
+import UserWorkData from '../models/UserWorkData';
 
 export class OrmAdapter implements IOrmAdapter {
 	public dbUrl: string;
@@ -30,6 +30,8 @@ export class OrmAdapter implements IOrmAdapter {
 			SessionEvent,
 			Exercise,
 			User,
+			UserProfileData,
+			UserWorkData
 		}
 	}
 

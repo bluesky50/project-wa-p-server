@@ -14,7 +14,7 @@ const FeatureEventResolver = async (parent: any, args: { id: string }, context: 
 const createFeatureEventResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: IFeatureEvent, context: IResolverContext): Promise<IFeatureEvent> => {
 		const newFeatureEvent = await new context.models.FeatureEvent({
-			updatedAt: "11/18/2018",
+			updatedAt: "today",
 			feature: args.feature,
 			session: args.session,
 			title: args.title,
