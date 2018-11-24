@@ -3,6 +3,8 @@ export const typeDefs: string = `
 type Session {
 	id: String
 	project: Project
+	visibility: String
+	access: String
 	updatedAt: String
 	creator: String
 	title: String
@@ -20,5 +22,5 @@ session(id: String!): Session!
 `;
 
 export const mutations: string = `
-createSession(title: String, description: String, type: String, category: String, tags: [String]): Session
+createSession(access: String, visibility: String, title: String, description: String, type: String, category: String, tags: [String]): Session
 `;

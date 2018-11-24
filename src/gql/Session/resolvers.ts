@@ -33,6 +33,8 @@ const createSessionResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISession, context: IResolverContext): Promise<ISession> => {
 		const newSession = await new context.models.Session({
 			updatedAt: "today",
+			access: args.access,
+			visibility: args.visibility,
 			creator: context.state.user.id,
 			project: args.projectId,
 			title: args.title,

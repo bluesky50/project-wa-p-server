@@ -1,6 +1,8 @@
 interface ISession {
 	updatedAt?: string;
 	projectId?: string;
+	access?: string;
+	visibility?: string;
 	creator?: string;
 	title?: string;
 	participants?: Array<any>;

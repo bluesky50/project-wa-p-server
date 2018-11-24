@@ -13,6 +13,20 @@ const SessionSchema: mongoose.Schema = new mongoose.Schema({
 		maxLength: 24,
 		minLength: 1
 	},
+	access: {
+		type: String,
+		required: false,
+		default: 'private',
+		minlength: 1,
+		maxLength: 24
+	},
+	visibility: {
+		type: String,
+		required: false,
+		default: 'default', // could be 'hidden',
+		minlength: 1,
+		maxLength: 24
+	},
 	project: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
