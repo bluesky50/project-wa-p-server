@@ -2,6 +2,7 @@
 export const typeDefs: string = `
 type Session {
 	id: String
+	project: Project
 	updatedAt: String
 	creator: String
 	title: String

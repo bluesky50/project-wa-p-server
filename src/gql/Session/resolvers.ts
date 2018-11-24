@@ -4,11 +4,29 @@ import IResolverMap from '../../interfaces/gql/IResolverMap';
 import IResolverContext from '../../interfaces/gql/IResolverContext';
 
 const SessionsResolver = async (parent: any, args: {}, context: IResolverContext): Promise<ISession> => {
-	return await context.models.Session.find();
+	return await context.models.Session.find()
+		.populate({
+			path: 'project',
+			select: 'title description'
+		})
+		.populate({
+			path: 'participants',
+			select: 'username'
+		})
+		.exec();
 };
 
 const SessionResolver = async (parent: any, args: { id: string }, context: IResolverContext): Promise<ISession> => {
-	return await context.models.Session.findById(args.id);
+	return await context.models.Session.findById(args.id)
+		.populate({
+			path: 'project',
+			select: 'title description'
+		})
+		.populate({
+			path: 'participants',
+			select: 'username'
+		})
+		.exec();
 };
 
 const createSessionResolver = isAuthenticatedResolver.createResolver(
@@ -16,6 +34,7 @@ const createSessionResolver = isAuthenticatedResolver.createResolver(
 		const newSession = await new context.models.Session({
 			updatedAt: "today",
 			creator: context.state.user.id,
+			project: args.projectId,
 			title: args.title,
 			description: args.description,
 			type: args.type,

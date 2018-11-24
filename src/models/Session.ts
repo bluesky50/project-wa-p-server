@@ -13,11 +13,17 @@ const SessionSchema: mongoose.Schema = new mongoose.Schema({
 		maxLength: 24,
 		minLength: 1
 	},
+	project: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: false,
+		default: null,
+		ref: 'Project'
+	},
 	creator: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: false,
 		default: null,
-		ref: '',
+		ref: 'User',
 	},
 	participants: {
 		type: [{
