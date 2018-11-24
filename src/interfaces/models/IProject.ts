@@ -1,6 +1,7 @@
 interface IProject {
 	updatedAt?: string;
 	creator?: string;
+	repoUrl?: string;
 	title?: string;
 	description?: string;
 	features?: Array<string>;

@@ -3,6 +3,7 @@ export const typeDefs: string = `
 type Project {
 	id: String
 	updatedAt: String
+	repoUrl: String
 	creator: String
 	title: String
 	description: String
@@ -19,5 +20,5 @@ project(id: String!): Project!
 `;
 
 export const mutations: string = `
-createProject(title: String, description: String, type: String, category: String, tags: [String]): Project
+createProject(repoUrl: String, title: String, description: String, type: String, category: String, tags: [String]): Project
 `;

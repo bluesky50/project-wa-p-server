@@ -19,6 +19,13 @@ const ProjectSchema: mongoose.Schema = new mongoose.Schema({
 		default: null,
 		ref: 'User',
 	},
+	repoUrl: {
+		type: String,
+		required: false,
+		default: '',
+		maxLength: 120,
+		minLength: 1
+	},
 	title: {
 		type: String,
 		required: false,

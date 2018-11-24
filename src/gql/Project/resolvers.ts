@@ -16,6 +16,7 @@ const createProjectResolver = isAuthenticatedResolver.createResolver(
 		const newProject = await new context.models.Project({
 			updatedAt: "today",
 			creator: context.state.user.id,
+			repoUrl: args.repoUrl,
 			title: args.title,
 			description: args.description,
 			type: args.type,
