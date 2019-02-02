@@ -1,43 +1,42 @@
 {
-  "name": "pairs-server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "jchiang <jonathan.directfeed@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "start": "DEBUG=server:Pairs ts-node ./src/index.ts"
-  },
-  "devDependencies": {
-    "@types/bcrypt": "^3.0.0",
-    "@types/graphql": "^14.0.3",
-    "@types/jsonwebtoken": "^8.3.0",
-    "@types/koa": "^2.0.46",
-    "@types/koa-bodyparser": "^5.0.1",
-    "@types/koa-helmet": "^3.1.2",
-    "@types/koa-logger": "^3.1.1",
-    "@types/koa-router": "^7.0.34",
-    "@types/koa__cors": "^2.2.3",
-    "@types/lodash": "^4.14.118",
-    "@types/mongoose": "^5.3.1",
-    "@types/node": "^10.12.9",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.1.6"
-  },
-  "dependencies": {
-    "@koa/cors": "^2.2.2",
-    "apollo-errors": "^1.9.0",
-    "apollo-resolvers": "^1.4.1",
-    "apollo-server-koa": "^2.2.2",
-    "bcrypt": "^3.0.2",
-    "graphql": "^14.0.2",
-    "graphql-tools": "^4.0.3",
-    "jsonwebtoken": "^8.4.0",
-    "koa": "^2.6.2",
-    "koa-bodyparser": "^4.2.1",
-    "koa-helmet": "^4.0.0",
-    "koa-logger": "^3.2.0",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.3.12",
-    "subscriptions-transport-ws": "^0.9.15"
-  }
+	"name": "pairs-server",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "example <example@email.com>",
+	"scripts": {
+		"start": "DEBUG=server:Pairs ts-node ./src/index.ts"
+	},
+	"devDependencies": {
+		"@types/bcrypt": "^3.0.0",
+		"@types/graphql": "^14.0.3",
+		"@types/jsonwebtoken": "^8.3.0",
+		"@types/koa": "^2.0.46",
+		"@types/koa-bodyparser": "^5.0.1",
+		"@types/koa-helmet": "^3.1.2",
+		"@types/koa-logger": "^3.1.1",
+		"@types/koa-router": "^7.0.34",
+		"@types/koa__cors": "^2.2.3",
+		"@types/lodash": "^4.14.118",
+		"@types/mongoose": "^5.3.1",
+		"@types/node": "^10.12.9",
+		"ts-node": "^7.0.1",
+		"typescript": "^3.1.6"
+	},
+	"dependencies": {
+		"@koa/cors": "^2.2.2",
+		"apollo-errors": "^1.9.0",
+		"apollo-resolvers": "^1.4.1",
+		"apollo-server-koa": "^2.2.2",
+		"bcrypt": "^3.0.2",
+		"graphql": "^14.0.2",
+		"graphql-tools": "^4.0.3",
+		"jsonwebtoken": "^8.4.0",
+		"koa": "^2.6.2",
+		"koa-bodyparser": "^4.2.1",
+		"koa-helmet": "^4.0.0",
+		"koa-logger": "^3.2.0",
+		"lodash": "^4.17.11",
+		"mongoose": "^5.3.12",
+		"subscriptions-transport-ws": "^0.9.15"
+	}
 }
