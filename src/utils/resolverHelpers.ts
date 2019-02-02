@@ -5,9 +5,6 @@ import IResolverContext from '../interfaces/gql/IResolverContext';
 
 export function generateRoleCheckResolver(roleTitle: string) {
 	return isAuthenticatedResolver.createResolver((parent: any, args: {}, context: IResolverContext) => {
-		// if (context.state.user.role.title !== roleTitle) {
-		// 	throw new ForbiddenError();
-		// }
 		if (!containsRole(context.state.user.roles, roleTitle)) {
 			throw new ForbiddenError();
 		}

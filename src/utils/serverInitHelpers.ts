@@ -1,9 +1,8 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import { ApolloServer } from 'apollo-server-koa';
-import middleware from '../lib/middleware';
 import { nonExecutableGqlSchema } from '../gql/schema';
-import { stringify } from 'querystring';
+import middleware from '../lib/middleware';
 
 export function applyMiddleware(app: Koa): void {
 	app.use(middleware.cors());
@@ -24,7 +23,6 @@ export function addGraphQLRoute(app: Koa, gqlEndpoint: string, models: { [key: s
 	app.use(gqlRouter.routes());
 
 	const context = (contextObject: any) => { 
-		// console.log(contextObject.ctx.state);
 		return {
 			state: contextObject.ctx.state, 
 			models 
@@ -33,7 +31,7 @@ export function addGraphQLRoute(app: Koa, gqlEndpoint: string, models: { [key: s
 	const server = new ApolloServer({ 
 		typeDefs: nonExecutableGqlSchema.typeDefs, 
 		resolvers: nonExecutableGqlSchema.resolvers, 
-		// mocks: true,
+		mocks: true,
 		context
 	});
 	server.applyMiddleware({ app, path: gqlEndpoint });

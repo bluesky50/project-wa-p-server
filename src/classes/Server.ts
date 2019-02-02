@@ -1,13 +1,6 @@
 import Koa from 'koa';
 import { createServer } from 'http';
 
-// import { execute, subscribe } from 'graphql';
-// import { SubscriptionServer } from 'subscriptions-transport-ws';
-
-// import schema from '../gql/schema';
-import { nonExecutableGqlSchema } from '../gql/schema';
-import { OrmAdapter } from './OrmAdapter';
-// import { applyMiddleware, addGraphQLRoute } from '../utils/serverInitHelpers';
 import { normalizePort, onError, onListening } from '../utils/serverHelpers';
 
 import debug from '../lib/debugger';
@@ -21,11 +14,11 @@ export class Server implements IServer {
 	public httpServer: any;
 	private serverConfig: any;
 
-	constructor(config: any, app: any, ormAdapter: any) {
-		this.app = app;
-		this.ormAdapter = ormAdapter;
+	constructor(serverConfig: { config: any, app: any, ormAdapter: any }) {
+		this.app = serverConfig.app;
+		this.ormAdapter = serverConfig.ormAdapter;
 		this.httpServer = null;
-		this.serverConfig = config;
+		this.serverConfig = serverConfig.config;
 	}
 
 	public run() {
@@ -38,7 +31,7 @@ export class Server implements IServer {
 		debug('Shutdown sequence...');
 		this.ormAdapter.disconnect();
 		this.httpServer.close();
-		// process.exit();
+		process.exit();
 	}
 
 	/**
@@ -59,26 +52,6 @@ export class Server implements IServer {
 		this.httpServer.on('error', onError(port));
 		this.httpServer.on('listening', onListening(this.httpServer));
 		this.httpServer.listen(port);
-
-		// Create http server and configure gql subscriptions.
-		// const wss = createServer(this.app.callback());
-		// this.httpServer = wss;
-	
-		// const port = normalizePort(this.serverConfig.port);
-
-		// this.httpServer.on('error', onError(port));
-		// this.httpServer.on('listening', onListening(this.httpServer));
-
-		// this.httpServer.listen(port, (ctx: Koa.Context) => {
-		// 	new SubscriptionServer({
-		// 		execute,
-		// 		subscribe,
-		// 		schema
-		// 	}, {
-		// 		server: this.httpServer,
-		// 		path: this.serverConfig.gqlSubscriptionsEndpoint
-		// 	});
-		// });
 	}
 
 	private _post() {
@@ -90,7 +63,7 @@ export class Server implements IServer {
 	 */
 	private _initializeDataSouce() {
 		if (this.ormAdapter === undefined || this.ormAdapter === null) {
-			this.ormAdapter = new OrmAdapter(this.serverConfig.dbUri + this.serverConfig.appName);
+			// this.ormAdapter = new OrmAdapter(this.serverConfig.dbUri + this.serverConfig.appName);
 			// this.ormAdapter.connect();
 		}
 	}
@@ -105,7 +78,7 @@ export class Server implements IServer {
 
 	private _initializeRoutes() {
 		// Create graphql endpoint.
-		addGraphQLRoute(this.app, this.serverConfig.gqlEndpoint, this.ormAdapter.getModels());
+		addGraphQLRoute(this.app, this.serverConfig.gqlEndpoint, {});
 	}
 }
 

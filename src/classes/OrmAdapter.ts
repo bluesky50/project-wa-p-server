@@ -3,20 +3,20 @@ import mongoose from 'mongoose';
 import debug from '../lib/debugger';
 import IOrmAdapter from '../interfaces/class/IOrmAdapter';
 
-import Exercise from '../models/Exercise';
+// import Exercise from '../models/Exercise';
 // import ExerciseRequirement from '../models/ExerciseRequirement';
 // import FeatureEvent from '../models/FeatureEvent';
 // import Feedback from '../models/Feedback';
-import Project from '../models/Project';
+// import Project from '../models/Project';
 // import ProjectFeature from '../models/ProjectFeature';
 // import ProjectNote from '../models/ProjectNote';
-import Session from '../models/Session';
-import SessionEvent from '../models/SessionEvent';
-import SessionInvite from '../models/SessionInvite';
+// import Session from '../models/Session';
+// import SessionEvent from '../models/SessionEvent';
+// import SessionInvite from '../models/SessionInvite';
 // import SessionNote from '../models/SessionNote';
-import User from '../models/User';
-import UserProfileData from '../models/UserProfileData';
-import UserWorkData from '../models/UserWorkData';
+// import User from '../models/User';
+// import UserProfileData from '../models/UserProfileData';
+// import UserWorkData from '../models/UserWorkData';
 
 export class OrmAdapter implements IOrmAdapter {
 	public dbUrl: string;
@@ -25,14 +25,14 @@ export class OrmAdapter implements IOrmAdapter {
 	constructor(dbUrl = '') {
 		this.dbUrl = dbUrl;
 		this.models = {
-			Project,
-			Session,
-			SessionEvent,
-			Exercise,
-			User,
-			UserProfileData,
-			UserWorkData,
-			SessionInvite
+			// Project,
+			// Session,
+			// SessionEvent,
+			// Exercise,
+			// User,
+			// UserProfileData,
+			// UserWorkData,
+			// SessionInvite
 		}
 	}
 
