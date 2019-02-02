@@ -12,7 +12,7 @@ import Project from '../models/Project';
 // import ProjectNote from '../models/ProjectNote';
 import Session from '../models/Session';
 import SessionEvent from '../models/SessionEvent';
-// import SessionInvite from '../models/SessionInvite';
+import SessionInvite from '../models/SessionInvite';
 // import SessionNote from '../models/SessionNote';
 import User from '../models/User';
 import UserProfileData from '../models/UserProfileData';
@@ -31,7 +31,8 @@ export class OrmAdapter implements IOrmAdapter {
 			Exercise,
 			User,
 			UserProfileData,
-			UserWorkData
+			UserWorkData,
+			SessionInvite
 		}
 	}
 

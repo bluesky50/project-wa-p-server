@@ -4,7 +4,12 @@ import IResolverMap from '../../interfaces/gql/IResolverMap';
 import IResolverContext from '../../interfaces/gql/IResolverContext';
 
 const UserProfileDatasResolver = async (parent: any, args: {}, context: IResolverContext): Promise<IUserProfileData> => {
-	return await context.models.UserProfileData.find();
+	const data = await context.models.UserProfileData.find();
+	return data.map((upd: any) => {
+		const newObject = upd.toObject();
+		newObject.userId = upd.userId.toString();
+		return newObject;
+	});
 };
 
 const UserProfileDataResolver = async (parent: any, args: { id: string }, context: IResolverContext): Promise<IUserProfileData> => {

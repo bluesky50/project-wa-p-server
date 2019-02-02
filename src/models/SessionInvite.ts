@@ -7,7 +7,7 @@ export interface ISessionInviteModel extends mongoose.Model<ISessionInviteDocume
 
 const SessionInviteSchema: mongoose.Schema = new mongoose.Schema({
 	updatedAt: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		required: false,
 		default: null,
 		ref: 'today',

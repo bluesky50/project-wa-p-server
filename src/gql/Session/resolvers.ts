@@ -31,13 +31,15 @@ const SessionResolver = async (parent: any, args: { id: string }, context: IReso
 
 const createSessionResolver = isAuthenticatedResolver.createResolver(
 	async (parent: any, args: ISession, context: IResolverContext): Promise<ISession> => {
+		const userId = context.state.user.id;
 		const newSession = await new context.models.Session({
 			updatedAt: "today",
 			access: args.access,
 			visibility: args.visibility,
-			creator: context.state.user.id,
+			creator: userId,
 			project: args.projectId,
 			title: args.title,
+			participants: [userId],
 			description: args.description,
 			type: args.type,
 			category: args.category,

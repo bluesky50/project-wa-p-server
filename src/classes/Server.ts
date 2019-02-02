@@ -91,7 +91,7 @@ export class Server implements IServer {
 	private _initializeDataSouce() {
 		if (this.ormAdapter === undefined || this.ormAdapter === null) {
 			this.ormAdapter = new OrmAdapter(this.serverConfig.dbUri + this.serverConfig.appName);
-			this.ormAdapter.connect();
+			// this.ormAdapter.connect();
 		}
 	}
 

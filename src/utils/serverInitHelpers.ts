@@ -33,8 +33,8 @@ export function addGraphQLRoute(app: Koa, gqlEndpoint: string, models: { [key: s
 	const server = new ApolloServer({ 
 		typeDefs: nonExecutableGqlSchema.typeDefs, 
 		resolvers: nonExecutableGqlSchema.resolvers, 
-		context 
+		// mocks: true,
+		context
 	});
 	server.applyMiddleware({ app, path: gqlEndpoint });
-	
 }
